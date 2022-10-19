@@ -76,7 +76,7 @@ while true; do
       if [ "$T" -ge $TEMP_FAIL_THRESHOLD ]; then
          # Shutdown system if temps are too high
          echo "CRITICAL!!!! TEMP_FAIL_THRESHOLD met. Shutting system down immediately.">> $LOG_FILE
-         shutdown now
+         /usr/sbin/shutdown now
          exit 0
          fi
       # Check and see if temps have varied enough to merit changing fan speed.
