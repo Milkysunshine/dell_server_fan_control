@@ -129,7 +129,7 @@ while true; do
          HEXADECIMAL_FAN_SPEED=$(printf '0x%02x' $FAN_PERCENT)
          # Log current time, temp, and fan speed.
          DATE=$(date +%H:%M:%S)
-         echo "$DATE - Temp: $T --> Set fan to $FAN_PERCENT%">> $LOG_FILE
+         echo "$DATE - Temp: $T --> Fan: $FAN_PERCENT%">> $LOG_FILE
          # Set fan speed via ipmitool
          /usr/bin/ipmitool -I lanplus -H $IDRAC_IP -U $IDRAC_USER -P $IDRAC_PASSWORD raw 0x30 0x30 0x02 0xff $HEXADECIMAL_FAN_SPEED > /dev/null
          fi
