@@ -1,0 +1,11 @@
+[Unit]
+Description=Run manual fan control script at Start and Stop
+
+[Service]
+Type=simple
+RemainAfterExit=no
+ExecStart=/root/fan_control.sh
+ExecStop=/root/ipmi_autofan.sh
+
+[Install]
+WantedBy=multi-user.target
