@@ -17,6 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.{{ project }}
 #
 
+
 #-----USER DEFINED VARIABLES-----
 # iDRAC
 IDRAC_IP="192.168.0.20"
@@ -43,6 +44,11 @@ LOG_FILE=/var/log/fan_control.log
 CLEAR_LOG="y"
 #-----END USER DEFINED VARIABLES-----
 
+
+
+
+
+
 # Clear logs on startup if enabled
 if [ $CLEAR_LOG == "y" ]; then
    truncate -s 0 $LOG_FILE
@@ -51,6 +57,21 @@ if [ $CLEAR_LOG == "y" ]; then
 DATE=$(date +%d-%m-%Y\ %H:%M:%S)
 # Start logging
 echo "Date $DATE --- Starting Dell IPMI fan control service...">> $LOG_FILE
+echo "Date $DATE --- iDRAC IP = "$IDRAC_IP"">> $LOG_FILE
+echo "Date $DATE --- iDRAC user = "$IDRAC_USER"">> $LOG_FILE
+echo "Date $DATE --- Minimum fan speed = "$FAN_MIN"%">> $LOG_FILE
+echo "Date $DATE --- Fan curve min point (MIN_TEMP) = "$MIN_TEMP"c">> $LOG_FILE
+echo "Date $DATE --- Fan curve max point (MAX_TEMP) = "$MAX_TEMP"c">> $LOG_FILE
+echo "Date $DATE --- System shutdown temp = "$TEMP_FAIL_THRESHOLD"c">> $LOG_FILE
+echo "Date $DATE --- Degrees warmer before increasing fan speed = "$HYST_WARMING"c">> $LOG_FILE
+echo "Date $DATE --- Degrees cooler before decreasing fan speed = "$HYST_COOLING"c">> $LOG_FILE
+echo "Date $DATE --- Time between temperature checks = "$LOOP_TIME" seconds">> $LOG_FILE
+if [ $CLEAR_LOG == "y" ]; then
+   echo "Date $DATE --- Log clearing at startup is enabled">> $LOG_FILE
+   else
+   echo "Date $DATE --- Log clearing at startup is disabled">> $LOG_FILE
+   fi
+echo "Date $DATE --- Log file location is "$LOG_FILE" (You are looking at it silly.)">> $LOG_FILE
 # Get highest temp of any cpu package.
 T_CHECK=$(sensors coretemp-isa-0000 coretemp-isa-0001 | grep Package | cut -c17-18 | sort -n | tail -1) > /dev/null
 # Ensure we have a value returned between 0 and 100.
