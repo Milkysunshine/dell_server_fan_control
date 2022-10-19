@@ -29,8 +29,6 @@ FAN_MIN="12"
 MIN_TEMP="40"
 # MAX_TEMP is where fans will reach 100% PWM.
 MAX_TEMP="80"
-# Set FAILSAFESPEED to the PWM percentage in case of error.
-FAILSAFESPEED="50"
 # If TEMP_FAIL_THRESHOLD temperature is reached, execute system shutdown
 TEMP_FAIL_THRESHOLD="83"
 # Set HYST_COOLING and HYST_WARMING to how many degrees change you want before adjusting fan speed. Larger numbers will decrease minor fan changes.
